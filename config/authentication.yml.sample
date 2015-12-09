@@ -1,0 +1,5 @@
+# Edit this file to enter your details
+
+haikugrades:
+	domain: <YOURDOMAINNAME>.haikulearning.com
+	api_key: <YOUR API KEY> # Replace this with your API key found in Manage Domain -> Settings -> Import API
