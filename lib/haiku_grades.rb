@@ -9,8 +9,6 @@ require_relative 'partial_grade'
 require_relative 'class_export'
 
 # Authentication information
-# API_KEY = '05378d310dc85a492df2200be254be7f'
-# DOMAIN = 'no-real-data.haikulearning.com'
 # USERNAME = 'andrew'
 # PASSWORD = 'test1234'
 
