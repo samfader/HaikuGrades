@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.6"
-  spec.add_development_dependency 'rubocop', require: false
-  spec.add_dependency 'hapi-client', git: 'git@github.com:haikulearning/hapi-client.git'
+  spec.add_development_dependency 'rubocop'
+  spec.add_dependency 'hapi-client' # , git: 'git@github.com:haikulearning/hapi-client.git'
   spec.add_dependency 'highline'
 end
