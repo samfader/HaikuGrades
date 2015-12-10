@@ -4,7 +4,6 @@ class FullGrade
     entries_columns = ''
     gradebook_entries = ''
     class_selection = ''
-    client.user.eclasses_teaching['items'].each do |eclass|
       # Starts a loop to go through each element of the "items" hash within the client.user.eclasses_teaching method in the API
       client.user.eclasses_teaching['items'].each do |eclass|
         # Sets variable gradebooks equal to all gradebooks, accepts argument that says the eclass_id is equal to an "id" within "items" - in other words, it loops through and grabs gradebooks from each class belonging to the user
@@ -18,11 +17,10 @@ class FullGrade
             # And we want to define columns (for use in a csv) as the keys for gradebook_entries - items, in the first array, then in the gradebook_entry_scores hash, then in the first array within that hash (since we just need column names)
             entries_columns = gradebook_entries['items'][0]['gradebook_entry_scores'][0].keys
           end
-        end
       end
     # Now, we need to make a csv for entries - we are using the shortname of the class to name the file so the same file is not overwritten each time,
     # instead, a new file is created for each class
-    CSV.open("entries_.csv", 'wb') do |csv|
+    CSV.open("entries_#{eclass['id']}.csv", 'wb') do |csv|
       # Add a row for the column names defined above
       csv << entries_columns
       gradebook_entries['items'].each do |y|

@@ -33,6 +33,8 @@ require_relative 'class_export'
 input_domain = authentication[0]['domain']
 input_apikey = authentication[0]['api_key']
 
+puts "#{input_apikey}"
+
 puts 'What is your Haiku Learning username?'
 input_username = gets.chomp
 
