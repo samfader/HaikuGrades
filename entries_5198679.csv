@@ -1,0 +1,5 @@
+id,points,user_id,comment,finalized,created_at,updated_at,sticky_note,entered_score,displayed_percent_score,displayed_score,displayed_points,displayed_letter_notation,eclass_user_id,gradebook_entry_id,special_score_notation_id
+88043979,100.0,8974327,,,2015-06-24T16:45:13Z,2015-06-24T16:45:13Z,,100.00,100.00,100.00,,A,142319475,6023907,
+88115618,69.0,8974327,comment,,2015-07-08T17:54:15Z,2015-07-08T17:56:18Z,,69.00,69.00,69.00,,C,142319475,6039551,
+88115617,32.0,8974327,asgagag,,2015-07-08T17:54:11Z,2015-07-08T17:56:52Z,,32.00,32.00,32.00,,C,142319475,6039552,
+88115621,78.0,8974327,Comment,,2015-07-08T17:55:40Z,2015-07-08T17:55:47Z,Note,78.00,78.00,78.00,,C,142319475,6039553,

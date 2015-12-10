@@ -20,23 +20,18 @@ require_relative 'class_export'
 # puts "What is your API key?"
 # input_apikey = gets.chomp
 
-class HaikuGrades
-  
-attr_writer :config
-
-		def initialize
+		def authentication
+      file_join = File.join('config', 'authentication.yml')
 			# path can be either from root or for debugging from the curent class
-			if File.exists?('../../config/authentication.yml')
-				@config = YAML.load(File.open('../../config/authentication.yml'))
-			elsif File.exists?('./config/authentication.yml')
-				@config = YAML.load(File.open('./config/authentication.yml'))
+			if File.exists?(file_join)
+				return YAML.load(File.read(file_join))
 			else
 				raise StandardError, 'Cannot find configuration file.  Please make sure you have edited authentication.yml.'
 			end
 		end
     
-input_domain = @config['haikugrades']['domain']
-input_apikey = @config['haikugrades']['api_key']
+input_domain = authentication[0]['domain']
+input_apikey = authentication[0]['api_key']
 
 puts 'What is your Haiku Learning username?'
 input_username = gets.chomp
@@ -84,4 +79,3 @@ else
 end
 
 puts 'Ran successfully.'
-end
