@@ -40,12 +40,14 @@ input_username = gets.chomp
 
 input_password = ask('What is your Haiku Learning password? ' + "\n") { |q| q.echo = false }
 
+# Right now it seems that Hapi Client is unable to handle this properly, since it will still create a 
+# client even if the API key/domain name is wrong, then will fail below.
 begin
   # Instantiate a client using the information above
   client = HapiClient::Client.new(api_key: input_apikey,
                                   base_endpoint: "https://#{input_domain}", debug: 'true')
-rescue
-  raise 'You entered an incorrect API key or domain name - please try again!'
+rescue AuthenticationFailed
+  puts "You entered an incorrect API key or domain name - please try again!"
 end
 
 begin
@@ -53,7 +55,7 @@ begin
   session = client.login_as(username: input_username,
                             password: input_password)
 rescue
-  raise 'You entered an incorrect username or password - please try again!' if session.nil?
+  abort 'You entered an incorrect username, password, API key, or domain name - please re-run the program and try again!' if session.nil?
 end
 
 puts 'Would you like a list of your classes exported to csv? (y/n)'
