@@ -8,27 +8,19 @@ require_relative 'full_grade'
 require_relative 'partial_grade'
 require_relative 'class_export'
 
-# Authentication information
+# Authentication information for testing
 # USERNAME = 'andrew'
 # PASSWORD = 'test1234'
 
-# Commenting out for testing purposes
-# puts "Enter your domain URL without www or https://
-# (for example, test.haikulearning.com)"
-# input_domain = gets.chomp
-
-# puts "What is your API key?"
-# input_apikey = gets.chomp
-
-		def authentication
-      file_join = File.join('config', 'authentication.yml')
-			# path can be either from root or for debugging from the curent class
-			if File.exists?(file_join)
-				return YAML.load(File.read(file_join))
-			else
-				raise StandardError, 'Cannot find configuration file.  Please make sure you have edited authentication.yml.'
-			end
-		end
+def authentication
+  file_join = File.join('config', 'authentication.yml')
+	# path can be either from root or for debugging from the curent class
+	if File.exists?(file_join)
+		return YAML.load(File.read(file_join))
+	else
+		raise StandardError, 'Cannot find configuration file.  Please make sure you have edited authentication.yml.'
+	end
+end
     
 input_domain = authentication[0]['domain']
 input_apikey = authentication[0]['api_key']
@@ -43,7 +35,6 @@ input_password = ask('What is your Haiku Learning password? ' + "\n") { |q| q.ec
 # Right now it seems that Hapi Client is unable to handle this properly, since it will still create a 
 # client even if the API key/domain name is wrong, then will fail below.
 begin
-  # Instantiate a client using the information above
   client = HapiClient::Client.new(api_key: input_apikey,
                                   base_endpoint: "https://#{input_domain}", debug: 'true')
 rescue AuthenticationFailed
@@ -51,7 +42,6 @@ rescue AuthenticationFailed
 end
 
 begin
-  # Login as a single user
   session = client.login_as(username: input_username,
                             password: input_password)
 rescue
@@ -66,7 +56,6 @@ else
   puts ''
 end
 
-# Ask user which class they want grades for
 puts "Your classes are: " + "\n"
 client.user.eclasses_teaching['items'].each do |eclass|
   puts "#{eclass['name']}" + " : #{eclass['id']} (id)"
